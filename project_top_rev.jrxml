@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="project_top_rev" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="894f4f12-1b3e-43d0-b202-7827aa048df3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from
+(
+  select rownum row_num, p.project_name AS "PROJECT NAME",
+  p.project_lead AS "PROJECT LEAD",
+  c.customer_name as "CUSTOMER NAME",
+  p.start_date AS "START DATE",
+  p.end_date AS "END DATE",
+  pc.used_value AS "VALUE"
+  from project p
+  join project_contract pc
+  on p.id=pc.project_id
+  join contract ct
+  on pc.contract_id=ct.id
+  join customer c
+  on ct.customer_id=c.id
+
+  order by pc.used_value desc
+) tbl
+where tbl.row_num <= 10]]>
+	</queryString>
+	<field name="ROW_NUM" class="java.math.BigDecimal"/>
+	<field name="PROJECT NAME" class="java.lang.String"/>
+	<field name="PROJECT LEAD" class="java.lang.String"/>
+	<field name="CUSTOMER NAME" class="java.lang.String"/>
+	<field name="START DATE" class="java.sql.Timestamp"/>
+	<field name="END DATE" class="java.sql.Timestamp"/>
+	<field name="VALUE" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="05df2793-2800-46cb-9b4c-432419730672"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Top 10 Highest Revenue]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="57e641f4-fe0e-469b-ae01-b138244dbd8c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROJECT NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="2" width="100" height="20" uuid="ca89e5e0-ea87-4aa7-9d0c-ef62c7300635"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROJECT LEAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="22" uuid="57cffb62-35b7-4f80-91d0-7b308d3c74a0"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUSTOMER NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="100" height="22" uuid="144d3dc8-44ea-4d59-9b01-77bd79de8d70"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[START DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="2" width="100" height="20" uuid="f11c81b6-9098-48ca-bccf-6c9c08859c8c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[END DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="2" width="55" height="20" uuid="1db02738-1179-4fad-801c-f6ade00df2c4"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALUE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="25" width="555" height="1" uuid="6da27b46-7f9b-41d9-9f54-7f38277ffa20"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="08b01ac2-383e-4654-91f4-0d529fe4e44b"/>
+				<textFieldExpression><![CDATA[$F{PROJECT NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="9eb1a012-64a5-45a9-b347-edb88c86813d"/>
+				<textFieldExpression><![CDATA[$F{PROJECT LEAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="beee01ba-fc5d-4836-9035-c5838118621e"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="20" uuid="223461b8-f09c-4892-8db1-b2869f8e3dee"/>
+				<textFieldExpression><![CDATA[$F{START DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="100" height="20" uuid="ff2b0e27-6722-468a-b4c4-e729982bf6b9"/>
+				<textFieldExpression><![CDATA[$F{END DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="0" width="55" height="20" uuid="43436eff-60f8-435c-8ec5-af9ba55d3eb7"/>
+				<textFieldExpression><![CDATA[$F{VALUE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="23" width="554" height="1" uuid="9b381f14-979d-40dc-ab34-d55b489ce604"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

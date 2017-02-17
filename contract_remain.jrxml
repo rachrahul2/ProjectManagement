@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contract_remain" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be95f893-7431-46ea-a9ad-26ccec5e985f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select
+cus.customer_code as "CUSTOMER CODE",
+cus.customer_name as "CUSTOMER NAME",
+ct.contract_code as "CONTRACT_CODE",
+ct.remain_value as "REMAIN VALUE"
+from
+customer cus
+join contract ct
+on cus.id=ct.customer_id]]>
+	</queryString>
+	<field name="CUSTOMER CODE" class="java.lang.String"/>
+	<field name="CUSTOMER NAME" class="java.lang.String"/>
+	<field name="CONTRACT_CODE" class="java.lang.String"/>
+	<field name="REMAIN VALUE" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="5c4d007d-9193-466b-a168-b3ce9a5e80ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contract Remain Value]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="40" y="0" width="145" height="20" uuid="9c715ecf-2446-4e7e-838d-5c798d5c3ba2"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUSTOMER CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="117" height="20" uuid="04554e52-4045-4ed3-9856-7c05687a7199"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUSTOMER NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="404" y="2" width="96" height="18" uuid="f9de3e25-1ddc-4aae-847f-295b88010b84"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[REMAIN VALUE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="38" y="23" width="462" height="1" uuid="3f40d5ea-125d-4f8c-ac66-d66a1207445a"/>
+			</line>
+			<staticText>
+				<reportElement x="302" y="2" width="102" height="20" uuid="0bebda5e-ff42-4fd8-96c7-8587312a7b90"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRACT_CODE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="0" width="145" height="20" uuid="c7e0686b-e895-4dcf-a8d0-41ddaa9fd52b"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER CODE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="117" height="20" uuid="9e546de7-f90f-44e9-995e-6972a04b99c0"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="0" width="96" height="20" uuid="92e6f51f-310a-4cc6-9b2b-444ff6f14a09"/>
+				<textFieldExpression><![CDATA[$F{REMAIN VALUE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="38" y="24" width="462" height="1" uuid="f8fce22d-92b9-4642-a0f8-a2e1494bf879"/>
+			</line>
+			<textField>
+				<reportElement x="302" y="0" width="102" height="20" uuid="c6051233-bec3-4e3f-9a35-0a9502759991"/>
+				<textFieldExpression><![CDATA[$F{CONTRACT_CODE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

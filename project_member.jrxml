@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="project_member" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f2af6119-e18c-4551-82c6-6320540150c2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select p.project_code as "PROJECT CODE",
+p.project_name as "PROJECT NAME",
+pr.employee as "EMPLOYEE",
+r.role_name as "ROLE NAME"
+from project p
+join project_role pr
+on p.id=pr.project_id
+join app_role r
+on pr.role_id=r.id
+join application_user au
+on pr.employee=au.account
+where p.id=$P{id}
+order by au.account]]>
+	</queryString>
+	<field name="PROJECT CODE" class="java.lang.String"/>
+	<field name="PROJECT NAME" class="java.lang.String"/>
+	<field name="EMPLOYEE" class="java.lang.String"/>
+	<field name="ROLE NAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="555" height="22" uuid="ce2be008-1b79-4611-bb0e-9f099e8360f3"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Project Member]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="130" height="20" uuid="7e4190e7-d0e4-41c6-903e-23e4f07c4759"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROJECT CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="139" height="20" uuid="bd1515c2-913b-4e0f-9c90-f9914896884e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROJECT NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="269" y="0" width="117" height="20" uuid="ba20e5c5-3e41-42b9-a0ac-fa3b233c61e2"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMPLOYEE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="386" y="0" width="117" height="20" uuid="302fa5e2-aaec-4138-a08e-8ddee6dff013"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ROLE NAME]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="25" width="555" height="1" uuid="3207b507-3e65-47e7-bd8d-989e09011fc1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="130" height="20" uuid="3735b04b-d347-4912-8372-bf8b41462a0d"/>
+				<textFieldExpression><![CDATA[$F{PROJECT CODE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="139" height="20" uuid="0eec7578-b57f-435e-acb1-7d383e87a5da"/>
+				<textFieldExpression><![CDATA[$F{PROJECT NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="272" y="0" width="114" height="20" uuid="d4f11d94-9548-4a08-a10d-5ef6a77b0e0d"/>
+				<textFieldExpression><![CDATA[$F{EMPLOYEE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="0" width="117" height="20" uuid="756a66a1-342e-43f4-9cbd-7466c5b98859"/>
+				<textFieldExpression><![CDATA[$F{ROLE NAME}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="22" width="555" height="1" uuid="4c23e7e6-5681-4a6c-8a76-e23a1ecf4a59"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

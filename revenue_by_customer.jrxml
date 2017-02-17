@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="revenue_by_customer" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5e3107c-ad57-4b90-90a3-ff0a600027b4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from (
+select cus.customer_code as "CUSTOMER CODE",
+cus.customer_name as "CUSTOMER NAME",
+nvl(sum(ct.contract_value), 0) as "TOTAL REVENUE"
+from
+customer cus
+left join contract ct
+on cus.id=ct.customer_id
+group by cus.customer_code, cus.customer_name
+) tbl
+order by tbl."TOTAL REVENUE" DESC]]>
+	</queryString>
+	<field name="CUSTOMER CODE" class="java.lang.String"/>
+	<field name="CUSTOMER NAME" class="java.lang.String"/>
+	<field name="TOTAL REVENUE" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="22" uuid="a41739d4-46cd-46a8-8657-de09ce44263e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Revenue By Customer]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="34" y="2" width="159" height="20" uuid="ee89d8b4-eb56-4320-b2ad-8fa753a6e8ac"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUSTOMER CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="193" y="2" width="162" height="20" uuid="a5b35d26-f4bc-4b1f-8809-3097a69c0940"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUSTOMER NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="2" width="158" height="20" uuid="331a98e8-5f47-486a-bfd1-0c817d8550ea"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL REVENUE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="33" y="27" width="480" height="1" uuid="64ee3550-ede6-4d08-bc1c-eae4aa93449d"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="34" y="0" width="159" height="20" uuid="1619432b-ecaa-4ad2-8238-8ad0eb30a875"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER CODE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="193" y="0" width="162" height="20" uuid="5336cbe5-4ad6-4377-bde1-fc353a2847e3"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="0" width="158" height="20" uuid="a3195df1-2ed5-4100-a5cd-1da9464cd276"/>
+				<textFieldExpression><![CDATA[$F{TOTAL REVENUE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="32" y="23" width="481" height="1" uuid="d104a90a-79fc-4cd4-a10f-cc01ca7b148c"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
